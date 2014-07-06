@@ -7,11 +7,13 @@
 
 
 #   tkokamo がリーダブルだと感じた所
-https://github.com/tkokamo/klursh-sezemi-2014-readable-code-2/blob/master/index.php
+https://github.com/klursh/klursh-sezemi-2014-readable-code-2/blob/master/index.php
 それぞれの処理の記述前に、おおよそどのようなことをしたいのかが書いてある。
  -最初は細かい所をみないので、だいたい何をしたいかわかると以降のコードリーデイングに役立つ。
+
 クラス名と中身が一致している
  -自分がしてなかったので、「あ、こっちのほうがよい」となりました。
+ -(私):Recipeクラスなのに、複数のレシピを扱っていた
 
 #   tkokamo memo
 関数の返り値をそのまま利用することを避けて、一度意味のある変数に落としてから使う

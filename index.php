@@ -9,30 +9,32 @@ if ($argc < 9) {
   exit(EXIT_FAILURE);
 }
 
-//データから
+
 $i = 1;
 
-
+//自分の集めたレシピを持ったユーザデータの作成
 $users = array();
 $recipe_id = 1;
 for ($i < 0; $i < 4; $i++) {
 
   //ユーザ名取得
   $user_name = $argv[$i*2+1]; 
-  //レシピデータを配列で取得
-  $recipe_data = lines_from_file(RECIPE_FILE_DIR . $arg[2*($i+1)]);
+  //ユーザの作成とユーザ配列への追加
+  $users[$i] = new User($user_name);
+ 
+  //ファイルからレシピデータを配列で取得
+  $recipe_data = lines_from_file(RECIPE_FILE_DIR . $argv[2*($i+1)]);
   //一つのファイルにあるレシピの数  
   $num_recipes = count($recipe_data);
 
-  //ユーザの作成とユーザ配列への追加
-  $users[$i] = new User($user_name); 
-
-  //ユーザの集めたレシピを登録
-  for ($id = 0; $id < $num_recipe; $id++) {
-    $recipe = new Recipe($recipeid, $recipe_names[$id]); 
+  //ユーザの集めたレシピをユーザオブジェクトに登録
+  for ($id = 0; $id < $num_recipes; $id++) {
+    $recipe = new Recipe($recipe_id++, $recipe_data[$id]); 
     $users[$i]->addRecipe($recipe);
   }
 }
+
+exit(1);
   
 // $argv[2]にIDが指定される
 if (isset($argv[2])) {
