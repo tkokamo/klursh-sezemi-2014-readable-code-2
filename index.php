@@ -10,14 +10,14 @@ for ($id = 0, $cnt = count($recipe_names); $id < $cnt; $id++) {
     $recipes[$id] = new Recipe($id, $recipe_names[$id]);
 }
 
+// $argv[1]にIDが指定される
 if (isset($argv[1])) {
-    // IDが指定された
-    // IDは数値
+    // IDが指定されたらそのIDのレシピを出力する
     $id = intval($argv[1]);
     echo $recipes[$id]."\n";
 }
 else {
-    // IDが指定されなかった。
+    // IDが指定されなかったらすべて出力する
     echo_array_as_lines($recipes);
 }
 
@@ -29,11 +29,11 @@ function lines_from_file($path) {
     return file($path, FILE_IGNORE_NEW_LINES);
 }
 /**
- * 配列を改行区切りで表示する。
+ * 配列の要素を改行区切りですべて表示する。
  */
 function echo_array_as_lines($arr) {
-    for ($i = 0, $cnt = count($arr); $i < $cnt; $i++) {
-        echo $arr[$i]."\n";
+    foreach ($arr as $val) {
+        echo $val."\n";
     }
 }
 
