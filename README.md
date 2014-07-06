@@ -2,7 +2,9 @@
 PHP
 
 #   実行手順
-コマンドラインで`$ php index.php'を実行します。
+コマンドラインで`$ php index.php`を実行します。
+
+IDを指定する場合はその後ろに続けます。`$ php index.php 1`
 
 #   レシピデータ
 data/recipe.txtにテキストとして記述します。
