@@ -1,0 +1,1 @@
+takuya@takuya-dynabook-R734-W3K.7106:1404607188

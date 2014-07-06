@@ -1,26 +1,39 @@
 <?php
 
-define('RECIPE_FILE_PATH', 'data/recipe.txt'); //データファイルパス定義
+define('RECIPE_FILE_DIR', 'data/'); //データファイルディレクトリ定義
 define('EXIT_FAILURE', '1'); // エラー定数定義
 
-$recipe_names = lines_from_file(RECIPE_FILE_PATH);
-
-// それぞれIDを振って$recipesに入れる
-$recipes = array();
-for ($id = 0, $cnt = count($recipe_names); $id < $cnt; $id++) {
-    $recipes[$id] = new Recipe($id, $recipe_names[$id]);
-}
-
-// $argv[1]にユーザ名が指定される(必須)
-if (isset($argv[1])) {
-  //ユーザ名表示
-  echo "ユーザ名: {$argv[1]}".PHP_EOL;
-}else {
-  echo "Uages:php {$argv[0]} <username>".PHP_EOL;
+//正しくコマンドライン引数の指定数が足りているかチェック
+if ($argc < 9) {
+  echo "Uages:php {$argv[0]} <username1> <recipe_data1> <username2> <recipe_data2> <username3> <recipe_data3> <username4> <recipe_data4> [<recipe_id>]".PHP_EOL;
   exit(EXIT_FAILURE);
 }
 
+//データから
+$i = 1;
 
+
+$users = array();
+$recipe_id = 1;
+for ($i < 0; $i < 4; $i++) {
+
+  //ユーザ名取得
+  $user_name = $argv[$i*2+1]; 
+  //レシピデータを配列で取得
+  $recipe_data = lines_from_file(RECIPE_FILE_DIR . $arg[2*($i+1)]);
+  //一つのファイルにあるレシピの数  
+  $num_recipes = count($recipe_data);
+
+  //ユーザの作成とユーザ配列への追加
+  $users[$i] = new User($user_name); 
+
+  //ユーザの集めたレシピを登録
+  for ($id = 0; $id < $num_recipe; $id++) {
+    $recipe = new Recipe($recipeid, $recipe_names[$id]); 
+    $users[$i]->addRecipe($recipe);
+  }
+}
+  
 // $argv[2]にIDが指定される
 if (isset($argv[2])) {
     // IDが指定されたらそのIDのレシピを出力する
@@ -49,14 +62,32 @@ function echo_array_as_lines($arr) {
 }
 
 class Recipe {
-    private $id;
-    private $name;
+  private $id;
+  private $name;
 
-    public function __construct($id, $name) {
-        $this->id = $id;
-        $this->name = $name;
-    }
-    public function __toString() {
-        return $this->id.': '.$this->name;
-    }
+  public function __construct($id, $name) {
+    $this->id = $id;
+    $this->name = $name;
+  }
+  public function __toString() {
+    return $this->id.': '.$this->name;
+  }
+}
+
+class User {
+  
+  private $userName;
+  private $userId;
+  private $recipes; //ユーザの集めたレシピ
+
+  public function __construct($userName = "") 
+  {
+    $this->userName = $userName;
+  }
+
+  public function addRecipe($recipe)
+  {
+    $this->recipes[] = $recipe;
+  }
+  
 }
