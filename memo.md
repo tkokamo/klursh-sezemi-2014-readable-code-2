@@ -6,7 +6,7 @@
 #   他の人のコードでいいと思ったこと
 
 
-#   tkokamo が書いたいいと思う所
+#   tkokamo がリーダブルだと感じた所
 https://github.com/tkokamo/klursh-sezemi-2014-readable-code-2/blob/master/index.php
 それぞれの処理の記述前に、おおよそどのようなことをしたいのかが書いてある。
 -最初は細かい所をみないので、だいたい何をしたいかわかると以降のコードリーデイングに役立つ。
